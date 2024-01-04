@@ -1,0 +1,55 @@
+{
+  "name": "paralle-qa-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "lint:eslint": "eslint .",
+    "lint:eslint:fix": "eslint . --ignore-path .gitignore --fix",
+    "lint:gherkin": "gherkin-lint",
+    "format": "npx prettier --write .",
+    "cleanup": "npx ts-node ./clean.ts",
+    "tct": "cross-env NODE_ENV=tct cucumber-js",
+    "stg": "cross-env NODE_ENV=stg cucumber-js",
+    "prod": "cross-env NODE_ENV=prod cucumber-js ",
+    "post": "npx ts-node ./support/reporter/HTMLReporter.ts",
+    "test:failed": "cucumber-js -p rerun @rerun.txt",
+    "report": "npx ts-node ./support/reporter/HTMLReporter.ts"
+  },
+  "lint-staged": {
+    "*.{cjs,js,ts}": "npm run lint:eslint",
+    "*.feature": "npm run lint:gherkin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:sportion/qa/parallel-qa.git"
+  },
+  "keywords": [],
+  "author": "D",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.0.1",
+    "@playwright/test": "^1.36.2",
+    "@types/chai": "^4.3.5",
+    "@types/fs-extra": "^11.0.1",
+    "@types/jquery": "^3.5.17",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "cucumber-html-reporter": "^6.0.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
+    "fs-extra": "^11.1.1",
+    "gherkin-lint": "^4.2.2",
+    "moment": "^2.29.4",
+    "multiple-cucumber-html-reporter": "^3.4.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "winston": "^3.8.2"
+  }
+}

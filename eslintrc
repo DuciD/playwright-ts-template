@@ -1,0 +1,49 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "filenames"
+  ],
+  "env": {
+    "node": true,
+    "commonjs": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "no-multiple-empty-lines": ["error", {
+      "max": 1,
+      "maxBOF": 0,
+      "maxEOF": 0
+    }],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "multiline-block-like", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "multiline-block-like" },
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "no-multi-spaces": ["error"],
+    "arrow-spacing": ["error"],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "keyword-spacing": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "space-before-blocks": ["error"],
+    "space-infix-ops": ["error"],
+    "padded-blocks": ["error", "never"],
+    "semi": ["error", "always"],
+    "semi-style": ["error", "last"],
+    "filenames/match-exported": ["error", ["camel", "pascal"]],
+    "camelcase": ["error"],
+    // Cucumber sets the widely used Page and other global variables from the hooks instead of World constructor
+    // which causes us to use non-null operator everytime we access these properties from the Cucumber steps
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": true }]
+  }
+}
