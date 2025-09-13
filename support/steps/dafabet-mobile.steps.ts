@@ -9,13 +9,7 @@ import CasinoSwitcher from "../../pages/mobile/CasinoSwitcher";
 
 
 
-Given('the player is at Dafabet mobile site in {string} language', async function (this: ICustomWorld, Language: string) {
-    const BASE_URL = ENV.BASE_URL_DAFABET_MOBILE + Language
-    const page = this.page!;
-    console.log('Base url: ' + BASE_URL);
-    await page.goto(BASE_URL, {timeout: 90000});
-    await page.bringToFront();
-});
+
 Given('the player is at Nextbet mobile site in {string} language', async function (this: ICustomWorld, NBLanguage: string) {
     const page = this.page!;
     const NB_BASE_URL = ENV.BASE_URL_NEXTBET_MOBILE + NBLanguage;
@@ -53,25 +47,6 @@ When('the player navigating to {string} page', async function (Product: string) 
 });
 ///LOGIN
 
-When('logs in using MIXEDCASEUSER credential', async function () {
-    const login = new LoginPageMobile(this.page);
-    const product = this.Product;
-    if (product === "Ow Sports") {
-        console.log('product in OW: ' + product)
-        await login.LoginBtnOwSports();
-    } else if (product === 'Dafa Sports') {
-        console.log('product DS: ' + product);
-        await login.LoginBtnDafaSports();
-    } else if (product === "Casino Gold") {
-        // await loginPageMobile.LoginButton();
-        await login.LoginCasinoGold();
-    } else {
-        console.log('product: ' + product);
-        await login.LoginButton();
-        await login.Login();
-        await login.LoginUser();
-    }
-});
 When('the player logs in using {string} credentials', async function (user:string) {
     const loginPageMobile = new LoginPageMobile(this.page);
     await loginPageMobile.LoginButton();
@@ -95,61 +70,6 @@ When('logs in using CASINOCASEUSER credential', async function () {
     console.log('player logged in...')
 });
 
-When('logs in using LATAMCASEUSER credential', async function () {
-    const product = this.product;
-    const loginPageMobile = new LoginPageMobile(this.page);
-    if (product === 'Dafa Sports') {
-        console.log('product: ' + product);
-        await loginPageMobile.LoginBtnDafaSports();
-    }
-
-    console.log('product: ' + product);
-    await loginPageMobile.LoginButton();
-    await loginPageMobile.LoginLatam();
-
-});
-When('logs in using NEXTBETCASEUSER credential', async function () {
-    const product = this.Product;
-    const loginPageMobile = new LoginPageMobile(this.page);
-    if (product === 'Sportsbook') {
-        console.log('product: ' + product);
-        await loginPageMobile.LoginNextbetSB();
-    } else {
-
-        console.log('product: ' + product);
-        await loginPageMobile.LoginButtonNextbet();
-        await loginPageMobile.LoginNextbet();
-    }
-});
-When('logs in using ZEDBETCASEUSER credential', async function () {
-    const product = this.Product;
-    const loginPageMobile = new LoginPageMobile(this.page);
-    if (product === 'SportsbookZB') {
-        console.log('product for ZB Sportsbook: ' + product);
-        await loginPageMobile.LoginZedbetSB();
-    } else {
-
-        console.log('product: ' + product);
-        await loginPageMobile.LoginButtonZedbet();
-        await loginPageMobile.LoginZedbet();
-    }
-
-});
-Then('Dafabet mobilepage is successfully displayed', async function () {
-    const login = new LoginPageMobile(this.page)
-    await login.isLoggedIn();
-});
-Then('Sportsbook mobilepage is successfully displayed', async function () {
-    const loginPageMobile = new LoginPageMobile(this.page);
-    await loginPageMobile.isLoggedInNextbetSB();
-});
-Then('Zedbet mobilepage is successfully displayed', async function () {
-    const product = this.Product;
-    const loginPageMobile = new LoginPageMobile(this.page);
-    if (product === 'SportsbookZB') {
-        await loginPageMobile.isLoggedInSportsbook();
-    }
-    await loginPageMobile.isLoggedIn();
 
 });
 
@@ -224,4 +144,5 @@ When('the player switch back to Casino', async function () {
         console.log('Casino page is displayed');
     }
 });
+
 
